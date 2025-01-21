@@ -6,7 +6,7 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/01/21 01:08:19 by tjooris          ###   ########.fr        #
+#    Updated: 2025/01/21 02:06:01 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,15 +15,15 @@ NAME = prog.a
 
 #=-=-=-=-=-=-FILES-=-=-=-=-=-=#
 
-MAKE_DIR	:=	.file/
+MAKE_DIR	:=	.make/
 BUILD_DIR	:=	$(MAKE_DIR)build_$(or $(shell git branch --show-current),default)/
 BASE_DIR	:=	normal/
 
 SRC_DIR		=	src/
 
-OBJ			=	$(patsubst	%.c, $(BUILD_DIR)%.o, $(SRC))
+OBJS			=	$(patsubst	%.c, $(BUILD_DIR)%.o, $(SRC))
 
-DEP			=	$(patsubst	%.c, $(BUILD_DIR)%.d, $(SRC)
+DEPS			=	$(patsubst	%.c, $(BUILD_DIR)%.d, $(SRC))
 
 
 #=-=-=-=-=-=-ROOT-=-=-=-=-=#
@@ -83,13 +83,13 @@ else
 endif
 
 ifeq ($(MODE), debug)
-	CFLAGS = -g3
+	FLAGS = -g3
 else ifeq ($(MODE), fsanitize)
-	CFLAGS = -g3 -fsanitize=address
+	FLAGS = -g3 -fsanitize=address
 else ifeq ($(MODE), optimize)
-	CFLAGS += -O2
+	FLAGS += -O2
 else ifeq ($(MODE), full-optimize)
-	CFLAGS += -O3
+	FLAGS += -O3
 else ifneq ($(MODE),)
 	ERROR = MODE
 endif
@@ -104,17 +104,17 @@ endif
 
 all: $(NAME)
 
-$(NAME): $(LIBS_PATH) $(OBJS)
+$(NAME): $(LIB_PATH) $(OBJS)
 	@echo $(MODE) > $(MODES_TRACE)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+	$(CC) $(PPFLAGS) $(FLAGS) -c $< -o $@
 
 clean fclean:
-	-@for lib in $(LIBS_DIRS); do $(MAKE) -s -C $$lib $@; done
-	rm -rf $(BUILD_DIR)
+	-@for lib in $(LIBS_PATH); do $(MAKE) -s -C $$lib $@; done
+	rm -rf $(MAKE_DIR)
 	@if [ "$@" = "fclean" ]; then rm -f $(NAME) $(MODE_TRACE); fi
 
 re: fclean all
