@@ -6,16 +6,16 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:01:53 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/22 19:28:00 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 10:38:13 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <unistd.h>
 
-void    rr(t_stack	stack, int	a, char	a_or_b)
+void    revr(t_stack	**stack, int	a, char	a_or_b)
 {
-    t_stack	current;
+    t_stack	*current;
 
 	current = *stack;
 	if (!current)
@@ -35,7 +35,7 @@ void    rr(t_stack	stack, int	a, char	a_or_b)
 }
 void    rrr(t_stack  **stack_a, t_stack  **stack_b)
 {
-	rr(stack_a, 0, 'a');
-	rr(stack_b, 0, 'b');
+	revr(stack_a, 0, 'a');
+	revr(stack_b, 0, 'b');
 	write(1, "rrr\n", 4);
 }

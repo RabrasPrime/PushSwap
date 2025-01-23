@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:36:51 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/22 18:13:41 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 10:34:15 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    initiate_pointer(t_stack **end, t_stack **start, t_stack **upcomming, t_
     *upcomming	= (*stack)->next;
 }
 
-void	pa(t_stack	*stack_a, t_stack	*stack_b)
+void	pa(t_stack	**stack_a, t_stack	**stack_b)
 {
 	t_stack *current;
     t_stack *last;
@@ -33,7 +33,7 @@ void	pa(t_stack	*stack_a, t_stack	*stack_b)
     a = 1;
     if ((*stack_b)->next == *stack_b && (*stack_b)->prev == *stack_b)
         a = 0;
-    initiate_pointer(&end, &current, &upcomming, stack_b);
+    initiate_pointer(&last, &current, &upcomming, stack_b);
     current->next = *stack_a;
     (*stack_a)->prev->next = current;
     current->prev = (*stack_a)->prev;
@@ -43,7 +43,7 @@ void	pa(t_stack	*stack_a, t_stack	*stack_b)
 		*stack_b = NULL;
 	else
 	{
-		*stack_b = second;
+		*stack_b = upcomming;
 		(*stack_b)->prev = last;
 		last->next = *stack_b;
 	}
@@ -71,7 +71,7 @@ void    pb(t_stack  **stack_a, t_stack  **stack_b)
         current->next = *stack_b;
         current->prev = (*stack_b)->prev;
         *stack_b = current;
-        (*stack_b)->prev-next = *stack_b;
+        (*stack_b)->prev->next = *stack_b;
         (*stack_b)->next->prev = *stack_b;
     }
     write(1, "pb\n", 3);

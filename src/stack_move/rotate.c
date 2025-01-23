@@ -6,14 +6,14 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:01:57 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/22 19:23:11 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 10:36:15 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <unistd.h>
 
-void    ra(t_stack  **stack, int a, char a_or_b)
+void    r(t_stack  **stack, int a, char a_or_b)
 {
     t_stack *current;
 
