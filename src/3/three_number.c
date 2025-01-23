@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:07:46 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 16:59:20 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 17:06:33 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,7 @@ int	check_order(t_stack	*stack)
 		return (6);
 }
 
+void	sort_three(t_stack	**stack)
+{
+	
+}
