@@ -6,9 +6,13 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:07:46 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 11:12:32 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 16:22:10 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
+int	check_order(t_stack	*stack)
+{
+	
+}
