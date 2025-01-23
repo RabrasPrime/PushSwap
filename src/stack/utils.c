@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:11 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 14:26:34 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 15:16:32 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,24 @@ void	add_stack(t_stack *stack, t_stack *add)
 	while (top->next != stack)
 	{
 		if (top->number == add->number)
-		
+			return ;
+		top = top->next;
 	}
+	if (top->number == add->number)
+		return ;
+	if (stack->next == stack && stack->prev == stack)
+	{
+		stack->next = add;
+		stack->prev = add;
+		add->next = stack;
+		add->prev = stack;
+			return ;
+	}
+	top = stack;
+	add->prev = top->prev;
+	top->prev->next = add;
+	top->prev = add;
+	add->next = top;
 	
 }
 
