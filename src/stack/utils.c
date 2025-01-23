@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:11 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 15:16:32 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/23 15:46:53 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	add_stack(t_stack *stack, t_stack *add)
 	while (top->next != stack)
 	{
 		if (top->number == add->number)
-			return ;
+			exit(-1) ;
 		top = top->next;
 	}
 	if (top->number == add->number)
-		return ;
+		exit(-1) ;
 	if (stack->next == stack && stack->prev == stack)
 	{
 		stack->next = add;
 		stack->prev = add;
 		add->next = stack;
 		add->prev = stack;
-			return ;
+			return ; ;
 	}
 	top = stack;
 	add->prev = top->prev;
@@ -41,6 +41,45 @@ void	add_stack(t_stack *stack, t_stack *add)
 	top->prev = add;
 	add->next = top;
 	
+}
+
+int	stacklen(t_stack	*stack)
+{
+	t_stack	*current;
+	int		i;
+
+	if (!stack)
+		return (0);
+	if (stack->next == stack && stack->prev == stack)
+		return (1);
+	if (stack->next->next = stack || stack->prev = stack)
+		return(2);
+	current = stack;
+	i = 0;
+	while (current->next != stack)
+	{
+		current- = current->next;
+		i++;
+	}
+	return (i);
+	
+}
+
+int	*stackdup(int	*tab, t_stack	*stack)
+{
+	int		i;
+	t_stack	*current;
+
+	i = 0;
+	current = stack;
+	tab = (int *)malloc(sizeof(int) * stacklen(stack));
+	while (current->next != stack)
+	{
+		tab[i++] = current->number;
+		current = current->next;
+	}
+	tab[i] = current->number;
+	return (tab);
 }
 
 t_stack	*create_stack(int value)
@@ -64,4 +103,7 @@ t_stack	stack_init(t_stack	*stack, char **array)
 	stack->next = stack;
 	stack->prev = stack;
 	i = 1;
+	while (array[i])
+		add_stack(stack, create_stack(ft_atoi(array[i++])));
+	return (stack);
 }
