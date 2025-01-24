@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 17:09:09 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/24 10:27:07 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,10 @@ void    r(t_stack  **stack, int a, char a_or_b);
 void    rr(t_stack  **stack_a, t_stack  **stack_b);
 void    s(t_stack  **stack, int a, char a_or_b);
 void    ss(t_stack  **stack_a, t_stack  **stack_b);
+void	add_stack(t_stack *stack, t_stack *add);
+int		stacklen(t_stack	*stack);
+int		*stackdup(int	*tab, t_stack	*stack);
+t_stack	*create_stack(int value);
+t_stack	*stack_init(t_stack	*stack, char **array);
 
 #endif

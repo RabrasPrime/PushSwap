@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:07:46 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 17:06:33 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/24 10:37:22 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,27 @@ int	check_order(t_stack	*stack)
 
 void	sort_three(t_stack	**stack)
 {
-	
+	if (stacklen(*stack) == 2 && (*stack)->number > (*stack)->next->number)
+	{
+		s(stack, 1, 'a');
+		return ;
+	}
+	if (check_order(*stack) == 1)
+		return ;
+	else if (check_order(*stack) == 2)
+		s(*stack, 1, 'a');
+	else if (check_order(*stack) == 3)
+	{
+		r(*stack, 1, 'a');
+		s(*stack, 1, 'a');
+	}
+	else if (check_order(*stack) == 4)
+		r(*stack, 1, 'a');
+	else if (check_order(*stack) == 5)
+	{
+		s(*stack, 1, 'a');
+		r(*stack, 1, 'a');
+	}
+	else
+		revr(*stack, 1, 'a');
 }
