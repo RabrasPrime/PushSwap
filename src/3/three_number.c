@@ -6,13 +6,13 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:07:46 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/24 10:37:22 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/24 10:39:46 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int	check_order(t_stack	*stack)
+static int	check_order(t_stack	*stack)
 {
 	if ((stack->number < stack->next->number)
 		&& (stack->next->number < stack->prev->number))

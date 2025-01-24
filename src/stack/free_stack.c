@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   five_number.c                                      :+:      :+:    :+:   */
+/*   free_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 11:08:05 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/24 14:31:48 by tjooris          ###   ########.fr       */
+/*   Created: 2025/01/24 13:24:30 by tjooris           #+#    #+#             */
+/*   Updated: 2025/01/24 13:24:32 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-int	is_five(t_stack	**stack_a, t_stack	**stack_b, int	n)
+void	ft_freestack(t_stack	**stack, int size)
 {
-	if (n == 5)
+	t_stack	*current;
+	int		i;
+
+	i = 0;
+	current = *stack;
+	while ( i < size - 1 )
 	{
-		if(((*stack_b)->number < (*stack_a)->number)
-			&& ((*stack_b)->number > (*stack_a)->number))
-		{
-			p(stack_a, stack_b, 'a');
-			revr(stack_a, 1, 'a');
-			revr(stack_a, 1, 'a');
-			return (1);
-		}
+		current = current->next;
+		free(current->prev);
+		i++;
 	}
-	return (0);
+	free(current);
 }
