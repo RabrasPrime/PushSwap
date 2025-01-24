@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:08:05 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/24 14:31:48 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/24 15:54:05 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,4 @@ int	is_five(t_stack	**stack_a, t_stack	**stack_b, int	n)
 	}
 	return (0);
 }
+
