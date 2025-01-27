@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/24 13:24:04 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/27 14:28:09 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int		*stackdup(int	*tab, t_stack	*stack);
 t_stack	*create_stack(int value);
 t_stack	*stack_init(t_stack	*stack, char **array);
 void	sort_three(t_stack	**stack);
+void	sort_five(t_stack **stack_a, t_stack **stack_b);
 
 #endif

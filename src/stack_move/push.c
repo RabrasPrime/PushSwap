@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:36:51 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 10:34:15 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/27 16:06:42 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 
 
-void    initiate_pointer(t_stack **end, t_stack **start, t_stack **upcomming, t_stack **stack)
+static void    initiate_pointer(t_stack **end, t_stack **start, t_stack **upcomming, t_stack **stack)
 {
     *end = (*stack)->prev;
     *start = *stack;
