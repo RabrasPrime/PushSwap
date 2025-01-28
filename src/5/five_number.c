@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:08:05 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/27 14:27:48 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 09:35:44 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	last_case(t_stack	**stack_a, t_stack	**stack_b)
 	revr(stack_a, 1, 'a');
 }
 
-static void	push_5(t_stack	**stack_a, t_stack	*stack_b)
+static void	push_5(t_stack	**stack_a, t_stack	**stack_b)
 {
 	if ((*stack_b)->number > (*stack_a)->prev->number)
 	{
@@ -95,8 +95,8 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	if (stacklen((*stack_a) == 4))
 	{
-		if ((*stack)->number < (*stack_a)->next->number
-			&& (*stack_a)->next->number < (*stack)->next->next->number
+		if ((*stack_a)->number < (*stack_a)->next->number
+			&& (*stack_a)->next->number < (*stack_a)->next->next->number
 			&& (*stack_a)->prev->number > (*stack_a)->prev->prev->number)
 			return ;
 		pb(stack_a, stack_b);
@@ -112,7 +112,7 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b)
 			return ;
 		pb(stack_a, stack_b);
 		pb(stack_a, stack_b);
-		sort_three(stack_a, stack_b);
+		sort_three(stack_a);
 		if (push_4(stack_a, stack_b, 5))
 			push_5(stack_a, stack_b);
 	}

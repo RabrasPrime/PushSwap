@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/27 14:28:09 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 10:23:18 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,19 @@ typedef	struct s_stack
 {
 	int	number;
 	int	index;
+	int value;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }	t_stack;
 
+typedef struct s_sequence
+{
+	int	current_length;   
+	int	max_length;       
+	int	current_start;    
+	int	max_start;        
+	int	marked_start;     
+}	t_sequence;
 
 void	initiate_pointer(t_stack **end, t_stack **start, t_stack **upcomming, t_stack **stack);
 void	pa(t_stack	**stack_a, t_stack	**stack_b);
