@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 15:24:34 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:50:48 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ typedef	struct s_stack
 	int value;
 	struct s_stack	*next;
 	struct s_stack	*prev;
+	int			value;
+	int			sa;
+	int			sb;
+	int			ra;
+	int			rb;
+	int			rra;
+	int			rrb;
+	int			move;
 }	t_stack;
 
 typedef struct s_sequence
@@ -67,7 +75,7 @@ void	sort_number(t_stack	**stack_a, t_stack	**stack_b);
 /*=-=-=-=-=-=-=-=-=-SEQUENCE-=-=-=-=-=-=-=-=-=*/
 
 void	mark(t_stack	**stack_a, t_sequence	*seq);
-t_sequence	*sequence(t_stack	**stack)
+t_sequence	*sequence(t_stack	**stack);
 
 
 #endif

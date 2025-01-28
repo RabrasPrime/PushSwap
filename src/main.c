@@ -6,14 +6,15 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 16:01:55 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:01:05 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include "libft.h"
+#include <stdlib.h>
 
-void	test_arg(char	*str, char	**tab)
+static void	test_arg(char	*str, char	**tab)
 {
 	int	i;
 
@@ -40,3 +41,5 @@ void	test_arg(char	*str, char	**tab)
 	ft_freestr(tab);
 	exit(EXIT_SUCCESS);
 }
+
+
