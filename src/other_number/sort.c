@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:24:06 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 14:54:27 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 15:11:49 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,29 @@ static void	need_sa(t_stack	**stack, t_sequence **seq)
 		free(fake_sequence);
 		s(stack, 0, 'a');
 	}
+}
+void	sort_number(t_stack	**stack_a, t_stack	**stack_b)
+{
+	t_sequence	*seq;
+	int			i;
+	int			stack_size;
+
+	seq = sequence(stack_a);
+	mark(stack_a, seq);
+	need_sa(stack_a, &seq);
+	free(seq);
+	stack_size = stacklen(*stack_a);
+	while (i <= stack_size)
+	{
+		if (!((*stack_a)->value))
+			pb(stack_a, stack_b);
+		else
+			r(stack_a, 1, 'a');
+		i++;
+	}
+	while ( *stack_b)
+	{
+		
+	}
+	reorg(*stack_a, stack_size, 0);
 }
