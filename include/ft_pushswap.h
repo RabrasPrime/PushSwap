@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 10:23:18 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:32:26 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@ typedef struct s_sequence
 	int	marked_start;     
 }	t_sequence;
 
-void	initiate_pointer(t_stack **end, t_stack **start, t_stack **upcomming, t_stack **stack);
+typedef struct s_max
+{
+	int	position;
+	int	stack_size;
+}	t_max;
+
+/*=-=-=-=-=-=-=-=-=-MOVE-=-=-=-=-=-=-=-=-=*/
+
 void	pa(t_stack	**stack_a, t_stack	**stack_b);
 void	pb(t_stack  **stack_a, t_stack  **stack_b);
 void    revr(t_stack	**stack, int	a, char	a_or_b);
@@ -40,12 +47,26 @@ void    r(t_stack  **stack, int a, char a_or_b);
 void    rr(t_stack  **stack_a, t_stack  **stack_b);
 void    s(t_stack  **stack, int a, char a_or_b);
 void    ss(t_stack  **stack_a, t_stack  **stack_b);
-void	add_stack(t_stack *stack, t_stack *add);
-int		stacklen(t_stack	*stack);
+
+/*=-=-=-=-=-=-=-=-=-INDEX-=-=-=-=-=-=-=-=-=*/
+
+void	init(t_stack	*stack);
+
+/*=-=-=-=-=-=-=-=-=-STACK_FUNCTIONS-=-=-=-=-=-=-=-=-=*/
+
 int		*stackdup(int	*tab, t_stack	*stack);
 t_stack	*create_stack(int value);
 t_stack	*stack_init(t_stack	*stack, char **array);
+
+/*=-=-=-=-=-=-=-=-=-SORT-=-=-=-=-=-=-=-=-=*/
+
 void	sort_three(t_stack	**stack);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
+
+/*=-=-=-=-=-=-=-=-=-SEQUENCE-=-=-=-=-=-=-=-=-=*/
+
+void	mark(t_stack	**stack_a, t_sequence	*seq);
+t_sequence	*sequence(t_stack	**stack)
+
 
 #endif

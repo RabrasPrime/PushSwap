@@ -6,14 +6,14 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:09:37 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 10:56:09 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:30:41 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <stdlib.h>
 
-t_sequence	*alloc_sequence(t_sequence	**seq)
+static t_sequence	*alloc_sequence(t_sequence	**seq)
 {
 	(*seq) = malloc(sizeof(t_sequence));
 	if (!(*seq))
@@ -22,7 +22,7 @@ t_sequence	*alloc_sequence(t_sequence	**seq)
 	(*seq)->current_length = 1;
 	return (*seq);
 }
-void	initiate_mark(t_stack	**stack_a)
+static void	initiate_mark(t_stack	**stack_a)
 {
 	t_stack	*current;
 	
@@ -62,7 +62,7 @@ void	mark(t_stack	**stack_a, t_sequence	*seq)
 		next->value = 1;
 }
 
-void	create_seq(t_stack	*current, t_sequence	**seq, int i, t_stack	**stack)
+static void	create_seq(t_stack	*current, t_sequence	**seq, int i, t_stack	**stack)
 {
 	t_stack	*cur;
 	int		prev;
@@ -94,6 +94,8 @@ t_sequence	*sequence(t_stack	**stack)
 	int			i;
 
 	seq = alloc_sequence(&seq);
+	if (!seq)
+		return (NULL);
 	current = *stack;
 	i = 0;
 	while (current->next != *stack)

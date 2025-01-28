@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:11 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/23 17:10:19 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 14:17:43 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	add_stack(t_stack *stack, t_stack *add)
+static void	add_stack(t_stack *stack, t_stack *add)
 {
 	t_stack	*top;
 	
@@ -43,7 +43,7 @@ void	add_stack(t_stack *stack, t_stack *add)
 	
 }
 
-int	stacklen(t_stack	*stack)
+static int	stacklen(t_stack	*stack)
 {
 	t_stack	*current;
 	int		i;
