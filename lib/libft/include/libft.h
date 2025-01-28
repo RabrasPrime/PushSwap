@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:15:03 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/27 17:54:01 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 15:53:33 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ char	*ft_strnstr( const char *big, const char *little, size_t len);
 int		ft_atoi( const char *nptr);
 char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
-void	ft_swap(int *a, int *b)
+void	ft_swap(int *a, int *b);
+void	ft_freestr(char	**str);
 
 /*=-=-=-=-=-=-=-=-LST-=-=-=-=-=-=-=-=*/
 
@@ -84,6 +85,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-
+/*=-=-=-=-=-=-=-=-ERROR-=-=-=-=-=-=-=-=*/
+void	ft_error()
 
 #endif

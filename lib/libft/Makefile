@@ -6,7 +6,7 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/01/27 17:55:06 by tjooris          ###   ########.fr        #
+#    Updated: 2025/01/28 15:54:02 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,6 +117,7 @@ STRINT_SRC	=	ft_atoi.c \
 				ft_strncmp.c \
 				ft_substr.c \
 				ft_swap.c \
+				ft_freestr.c \
 
 #=-=-=-=-=-=-TO-=-=-=-=-=#
 
@@ -125,6 +126,13 @@ SRC	+=	$(addprefix $(INTO_DIR), $(INTO_SRC))
 INTO_DIR	=	into/
 INTO_SRC	=	ft_tolower.c \
 				ft_toupper.c \
+
+#=-=-=-=-=-=-ERROR-=-=-=-=-=#
+
+SRC	+=	$(addprefix $(STRINT_DIR), $(STRINT_SRC))
+
+STRINT_DIR	=	error/
+STRINT_SRC	=	ft_error.c \
 
 #=-=-=-=-=-=-INCLUDES-=-=-=-=-=#
 

@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 14:32:26 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/28 15:24:34 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_stack	*stack_init(t_stack	*stack, char **array);
 
 void	sort_three(t_stack	**stack);
 void	sort_five(t_stack **stack_a, t_stack **stack_b);
+void	sort_number(t_stack	**stack_a, t_stack	**stack_b);
 
 /*=-=-=-=-=-=-=-=-=-SEQUENCE-=-=-=-=-=-=-=-=-=*/
 
