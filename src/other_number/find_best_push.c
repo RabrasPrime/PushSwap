@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:29:24 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 17:17:47 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 18:34:32 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 
 static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
 {
+	t_stack	*current;
+	t_stack	*save;
+	int		max;
+
+	max = 2147483647;
+	current = *stack_b;
+	while (current->next != stack_b)
+	{
+		if (current->sa + current->sb + current->ra 
+			+ current->rb + current->rra + current->rrb < max)
+		{
+			max = current->sa + current->sb + current->ra  + current->rb + current->rra + current->rrb;
+			save = current;
+		}
+	}
+	if (current->sa + current->sb + current->ra 
+		+ current->rb + current->rra + current->rrb < max)
+	{
+		max = current->sa + current->sb + current->ra  + current->rb + current->rra + current->rrb;
+		save = current;
+	}
 	
 }
 
