@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 14:16:12 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 16:33:32 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void    ss(t_stack  **stack_a, t_stack  **stack_b);
 /*=-=-=-=-=-=-=-=-=-INDEX-=-=-=-=-=-=-=-=-=*/
 
 void	init(t_stack	*stack);
+int	is_max(t_stack	*stack_a, t_stack	*second);
 
 /*=-=-=-=-=-=-=-=-=-STACK_FUNCTIONS-=-=-=-=-=-=-=-=-=*/
 

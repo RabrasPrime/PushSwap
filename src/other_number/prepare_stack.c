@@ -6,12 +6,52 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:59 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 15:39:52 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:12:05 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
+#include <stdlib.h>
 
+void	find_best(t_max	**max, int	i, t_stack	**stack_b, t_stack	*stack_a)
+{
+	int	last_max;
+
+	if ((*stack_b)->number < stack_a->number)
+	{
+		last_max = stack_a->index - (*stack_b)->index;
+		if (last_max < (*max)->position)
+		{
+			(*max)->position = last_max;
+		if (i <= (*max)->stack_size / 2)
+			{
+				(*stack_b)->move = 1;
+				(*stack_b)->ra = 1;
+			}
+			else
+			{
+				(*stack_b)->move = 2;
+				(*stack_b)->rra = (*max)->stack_size - i;
+			}
+		}
+	}
+}
+void	loop_find_best(t_stack **stack_a, t_stack	**stack_b, t_max	**max)
+{
+	t_stack	*current_a;
+	int		i;
+
+	current_a = *stack_a;
+	i = 0;
+	while (current_a->next != *stack_a)
+	{
+		find_best(max, i, stack_b, current_a);
+		current_a = current_a->next;
+		i++;
+	}
+	find_best(max, i, stack_b, stack_a);
+	
+}
 static void	max_init(t_max	**max, t_stack	**stack_a)
 {
 	*max = malloc(sizeof(t_max));
@@ -25,5 +65,22 @@ void	prepare_stack(t_stack	**stack_a, t_stack	**current)
 	int		i;
 
 	max_init(&max, stack_a);
-	i = 
+	i = is_max(*stack_a, *current);
+	if (i <= max->stack_size / 2 && i>= 0)
+	{
+		(*current)->move = 2;
+		(*current)->ra = i + 1;
+		free(max);
+		return ;
+	}
+	else if (i > max->stack_size - i - 1 >= 0)
+	{
+		(*current)->move = 2;
+		(*b)->rra = max->stack_size - i - 1;
+		free (max);
+		return ;
+	}
+	loop_find_best(stack_a, current, &max);
+	free(max);
+	return ;
 }
