@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"ft_pushswap.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"cstdlib": "c"
 	}
 }

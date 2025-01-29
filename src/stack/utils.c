@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:11 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 14:17:43 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:33:06 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	add_stack(t_stack *stack, t_stack *add)
 		stack->prev = add;
 		add->next = stack;
 		add->prev = stack;
-			return ; ;
+			return ;
 	}
 	top = stack;
 	add->prev = top->prev;
@@ -43,7 +43,7 @@ static void	add_stack(t_stack *stack, t_stack *add)
 	
 }
 
-static int	stacklen(t_stack	*stack)
+int	stacklen(t_stack	*stack)
 {
 	t_stack	*current;
 	int		i;

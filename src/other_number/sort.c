@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:24:06 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 15:11:49 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 12:10:25 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ void	sort_number(t_stack	**stack_a, t_stack	**stack_b)
 			r(stack_a, 1, 'a');
 		i++;
 	}
-	while ( *stack_b)
+	while (*stack_b)
 	{
-		
+		initiate_move(stack_b, 0);
+		 
 	}
 	reorg(*stack_a, stack_size, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 16:50:48 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:16:12 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	init(t_stack	*stack);
 int		*stackdup(int	*tab, t_stack	*stack);
 t_stack	*create_stack(int value);
 t_stack	*stack_init(t_stack	*stack, char **array);
+int	stacklen(t_stack	*stack);
 
 /*=-=-=-=-=-=-=-=-=-SORT-=-=-=-=-=-=-=-=-=*/
 
@@ -77,5 +78,12 @@ void	sort_number(t_stack	**stack_a, t_stack	**stack_b);
 void	mark(t_stack	**stack_a, t_sequence	*seq);
 t_sequence	*sequence(t_stack	**stack);
 
+/*=-=-=-=-=-=-=-=-=-ARG-=-=-=-=-=-=-=-=-=*/
+
+char	**args_handler(int	*ac, char	**av);
+
+/*=-=-=-=-=-=-=-=-=-MOVE-=-=-=-=-=-=-=-=-=*/
+
+void	initiate_move(t_stack	**stack_a, int	n);
 
 #endif

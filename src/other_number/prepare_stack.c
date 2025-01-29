@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   prepare_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 12:06:33 by tjooris          ###   ########.fr       */
+/*   Created: 2025/01/29 15:06:59 by tjooris           #+#    #+#             */
+/*   Updated: 2025/01/29 15:39:52 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
-#include "libft.h"
-#include <stdlib.h>
 
-void	initiate_move(t_stack	**stack_a, int	n)
+static void	max_init(t_max	**max, t_stack	**stack_a)
 {
-	t_stack	*current;
-
-	current = *stack_a;
-	while (current->next != *stack_a)
-	{
-		current->sa = n;
-		current->sb = n;
-		current->ra = n;
-		current->rb = n;
-		current->rra = n;
-		current->rrb = n;
-		current->move = n;
-	}
-	current->sa = n;
-	current->sb = n;
-	current->ra = n;
-	current->rb = n;
-	current->rra = n;
-	current->rrb = n;
+	*max = malloc(sizeof(t_max));
+	(*max)->position = 2147483647;
+	(*max)->stack_size = stacklen(*stack_a);
 }
 
+void	prepare_stack(t_stack	**stack_a, t_stack	**current)
+{
+	t_max	*max;
+	int		i;
+
+	max_init(&max, stack_a);
+	i = 
+}

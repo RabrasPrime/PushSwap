@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:15:03 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 15:53:33 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 11:15:10 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 void	ft_swap(int *a, int *b);
 void	ft_freestr(char	**str);
+int	ft_tablen(char	**tab);
 
 /*=-=-=-=-=-=-=-=-LST-=-=-=-=-=-=-=-=*/
 
