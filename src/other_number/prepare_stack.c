@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:06:59 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 17:12:05 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:12:26 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	prepare_stack(t_stack	**stack_a, t_stack	**current)
 	else if (i > max->stack_size - i - 1 >= 0)
 	{
 		(*current)->move = 2;
-		(*b)->rra = max->stack_size - i - 1;
+		(*current)->rra = max->stack_size - i - 1;
 		free (max);
 		return ;
 	}

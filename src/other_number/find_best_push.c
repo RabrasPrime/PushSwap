@@ -6,28 +6,40 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:29:24 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 14:23:50 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:17:47 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
+static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
+{
+	
+}
+
 void	find_push(t_stack	**stack_a, t_stack	**stack_b)
 {
-	t_stack	*current;
+	t_stack	*current_b;
 	int		i;
 	int		size;
 
-	current = *stack_b;
+	current_b = *stack_b;
 	i = 0;
 	size = stacklen(*stack_b);
-	while (current->next != *stack_b)
+	while (current_b->next != *stack_b)
 	{
 		if (i <= size / 2)
-			current->rb = i;
+			current_b->rb = i;
 		else
-			current->rrb = size -1;
-		
+			current_b->rrb = size -1;
+		prepare_stack(stack_a, &current_b);
+		i++;
+		current_b = current_b->next;
 	}
+	if (i <= size / 2)
+		current_b->rb = i;
+	else
+		current_b->rrb = size - i;
+	prepare_stack(stack_a, &current_b);
 	
 }

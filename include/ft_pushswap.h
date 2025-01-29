@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 16:33:32 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/29 17:13:36 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		*stackdup(int	*tab, t_stack	*stack);
 t_stack	*create_stack(int value);
 t_stack	*stack_init(t_stack	*stack, char **array);
 int	stacklen(t_stack	*stack);
+void	prepare_stack(t_stack	**stack_a, t_stack	**current);
 
 /*=-=-=-=-=-=-=-=-=-SORT-=-=-=-=-=-=-=-=-=*/
 
