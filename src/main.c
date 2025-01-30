@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 16:44:01 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:18:02 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static	is_orderer(t_stack	*stack_a)
 	exit(EXIT_SUCCESS);
 }
 
-int	main(int	argc, char	**argv)
+int	main(int argc, char	**argv)
 {
 	char	**tab;
 	t_stack	*stack_a;
