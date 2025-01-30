@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 15:52:31 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:44:01 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	initiate_move(t_stack	**stack_a, int	n)
+void	initiate_move(t_stack **stack_a, int n)
 {
 	t_stack	*current;
 
@@ -63,6 +63,7 @@ int	main(int	argc, char	**argv)
 	tab = NULL;
 	tab = args_handler(&argc, argv);
 	stack_a = stack_init(stack_a, tab);
+	ft_freestr(tab);
 	is_orderer(stack_a);
 	stack_b = NULL;
 	if (argc <= 3)
@@ -74,6 +75,5 @@ int	main(int	argc, char	**argv)
 		init(stack_a);
 		sort_number(&stack_a, &stack_b);
 	}
-	ft_freestr(tab);
 	ft_freestack(&stack_a, stacklen(stack_a));
 }

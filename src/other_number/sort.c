@@ -6,14 +6,14 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:24:06 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 13:10:39 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:53:03 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <unistd.h>
 
-static void	first_index(t_stack	**stack, t_stack	*current, t_max	*max, int i)
+static void	first_index(t_stack	**stack, t_stack *current, t_max *max, int i)
 {
 	if (current->index == 0)
 	{
@@ -29,7 +29,7 @@ static void	first_index(t_stack	**stack, t_stack	*current, t_max	*max, int i)
 		}
 	}
 }
-static void	reorg(t_stack	**stack, int	stack_size, int	index)
+static void	reorg(t_stack **stack, int stack_size, int index)
 {
 	t_stack	*current;
 	int		i;

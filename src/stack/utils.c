@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:11 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 14:33:06 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:43:40 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ t_stack	*stack_init(t_stack	*stack, char **array)
 	int	i;
 
 	stack = create_stack(ft_atoi(array[0]));
+	if (!stack)
+		error();
 	stack->next = stack;
 	stack->prev = stack;
 	i = 1;
