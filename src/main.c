@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 13:12:05 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 14:56:14 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,35 @@ void	initiate_move(t_stack	**stack_a, int	n)
 	current->rb = n;
 	current->rra = n;
 	current->rrb = n;
+}
+
+static	is_orderer(t_stack	*stack_a)
+{
+	t_stack	*current;
+
+	current = stack_a;
+	while (current->next != stack_a)
+	{
+		if (current->number > current->next->number)
+			return ;
+			current = current->next;
+	}
+	exit(EXIT_SUCCESS);
+}
+
+int	main(int	argc, char	**argv)
+{
+	char	**tab;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+
+	if (argv[1] && !argv[1][0])
+		ft_error();
+	stack_a = NULL;
+	tab = NULL;
+	tab = args_handler(&argc, argv);
+	stack_a = stack_init(stack_a, tab);
+	is_orderer(stack_a);
+	stack_b = NULL;
+	
 }

@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:03:07 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 11:38:04 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 14:53:56 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	**handle_multiple_arg(int	*ac, char	**av)
 	return (tab);	
 }
 
-char	**args_handler(int	*ac, char	**av)
+char	**args_handler(int	*argc, char	**argv)
 {
 	char	**tab;
 	

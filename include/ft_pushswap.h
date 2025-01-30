@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 13:10:02 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 14:54:14 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_sequence	*sequence(t_stack	**stack);
 
 /*=-=-=-=-=-=-=-=-=-ARG-=-=-=-=-=-=-=-=-=*/
 
-char	**args_handler(int	*ac, char	**av);
+char	**args_handler(int	*argc, char	**argv);
 
 /*=-=-=-=-=-=-=-=-=-MOVE-=-=-=-=-=-=-=-=-=*/
 
