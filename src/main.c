@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 12:06:33 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 13:12:05 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,3 @@ void	initiate_move(t_stack	**stack_a, int	n)
 	current->rra = n;
 	current->rrb = n;
 }
-

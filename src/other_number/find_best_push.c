@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:29:24 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 18:34:32 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 13:09:10 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
 		max = current->sa + current->sb + current->ra  + current->rb + current->rra + current->rrb;
 		save = current;
 	}
-	
+	move(stack_a, stack_b, &save);
 }
 
 void	find_push(t_stack	**stack_a, t_stack	**stack_b)
@@ -62,5 +62,5 @@ void	find_push(t_stack	**stack_a, t_stack	**stack_b)
 	else
 		current_b->rrb = size - i;
 	prepare_stack(stack_a, &current_b);
-	
+	push_best(stack_a, stack_b);
 }

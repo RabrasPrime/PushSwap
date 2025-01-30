@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:24:06 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 12:10:25 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 13:10:39 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	first_index(t_stack	**stack, t_stack	*current, t_max	*max, int i)
 	{
 		if (max->position <= max->stack_size /2)
 		{
-			while (i++ < max->nb)
+			while (i++ < max->position)
 				r(stack, 1, 'a');
 		}
 		else
@@ -97,7 +97,7 @@ void	sort_number(t_stack	**stack_a, t_stack	**stack_b)
 	while (*stack_b)
 	{
 		initiate_move(stack_b, 0);
-		 
+		find_push(stack_a, stack_b);
 	}
 	reorg(*stack_a, stack_size, 0);
 }
