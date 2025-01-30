@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:03:07 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 14:53:56 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:48:31 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	test_arg(char	*str, char	**tab)
 			ft_error();
 		}
 	}
-	//ft_atoi(str);
 	ft_freestr(tab);
 	exit(EXIT_SUCCESS);
 }
@@ -75,11 +74,11 @@ char	**args_handler(int	*argc, char	**argv)
 {
 	char	**tab;
 	
-	if (*ac < 2)
+	if (*argc < 2)
 		exit(EXIT_FAILURE);
-	else if (*ac == 2)
-		tab = handle_one_arg(ac, av);
+	else if (*argc == 2)
+		tab = handle_one_arg(argc, argv);
 	else
-		tab = handle_multiple_arg(ac, av);
+		tab = handle_multiple_arg(argc, argv);
 	return (tab);
 }

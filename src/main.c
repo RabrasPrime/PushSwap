@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 14:56:14 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:52:31 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,15 @@ int	main(int	argc, char	**argv)
 	stack_a = stack_init(stack_a, tab);
 	is_orderer(stack_a);
 	stack_b = NULL;
-	
+	if (argc <= 3)
+		sort_three(&stack_a);
+	else if (argc <= 5)
+		sort_five(&stack_a, &stack_b);
+	else
+	{
+		init(stack_a);
+		sort_number(&stack_a, &stack_b);
+	}
+	ft_freestr(tab);
+	ft_freestack(&stack_a, stacklen(stack_a));
 }

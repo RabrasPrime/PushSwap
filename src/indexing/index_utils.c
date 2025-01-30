@@ -6,14 +6,14 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:13:00 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/27 18:18:04 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:47:37 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include "libft.h"
 
-static void	prepare_index(int	max, t_stack stack, int a)
+static void	prepare_index(int	max, t_stack **stack, int a)
 {
 	if (a)
 	{
@@ -43,7 +43,7 @@ static int	part(t_stack	*stack, int	*tab, int	pos_start, int	pos_end)
 			j++;
 		if (pos_end - j < pos_start + i)
 			break ;
-		ft_swap(&tab[pos_start + i], &tab[pos_end - j])
+		ft_swap(&tab[pos_start + i], &tab[pos_end - j]);
 		start = stack;
 		end = stack->prev;
 		prepare_index(pos_start + i, &start, 1);
@@ -81,6 +81,6 @@ void	init(t_stack	*stack)
 	}
 	stack_c->index = i;
 	quicksort(stack, tab, 0, stacklen(stack) - 1);
-	node = stack;
+	stack_c = stack;
 	free(tab);
 }

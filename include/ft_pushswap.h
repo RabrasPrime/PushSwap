@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 14:54:14 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:51:29 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,9 @@ char	**args_handler(int	*argc, char	**argv);
 void	initiate_move(t_stack	**stack_a, int	n);
 void	move(t_stack	**stack_a, t_stack	**stack_b, t_stack	**current);
 void	find_push(t_stack	**stack_a, t_stack	**stack_b);
+
+/*=-=-=-=-=-=-=-=-=-FREE-=-=-=-=-=-=-=-=-=*/
+
+void	ft_freestack(t_stack	**stack, int size);
 
 #endif
