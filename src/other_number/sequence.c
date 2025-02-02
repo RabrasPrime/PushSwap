@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 10:09:37 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/28 14:30:41 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 23:08:35 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@ static t_sequence	*alloc_sequence(t_sequence	**seq)
 	(*seq)->current_length = 1;
 	return (*seq);
 }
+
 static void	initiate_mark(t_stack	**stack_a)
 {
 	t_stack	*current;
-	
+
 	current = *stack_a;
-	while (current->next != stack_a)
+	while (current->next != *stack_a)
 	{
 		current->value = 0;
 		current = current->next;
 	}
 	current->value = 0;
 }
+
 void	mark(t_stack	**stack_a, t_sequence	*seq)
 {
 	t_stack	*current;
@@ -43,7 +45,7 @@ void	mark(t_stack	**stack_a, t_sequence	*seq)
 	initiate_mark(stack_a);
 	i = 0;
 	current = *stack_a;
-	while(i++ < seq->max_start)
+	while (i++ < seq->max_start)
 		next = current->next;
 	current->value = 1;
 	i = current->index;
@@ -58,20 +60,20 @@ void	mark(t_stack	**stack_a, t_sequence	*seq)
 		}
 		next = next->next;
 	}
-	if (i == next->value - 1)
+	if (i == next->index - 1)
 		next->value = 1;
 }
 
-static void	create_seq(t_stack	*current, t_sequence	**seq, int i, t_stack	**stack)
+static void	create_seq(t_stack	*current, t_sequence	**seq, t_stack	**stack)
 {
 	t_stack	*cur;
 	int		prev;
-	
+
 	cur = current->next;
 	prev = current->index;
 	while (cur->next != *stack)
 	{
-		if (prev == cur->index-1)
+		if (prev == cur->index - 1)
 		{
 			(*seq)->current_length++;
 			prev = cur->index;
@@ -91,18 +93,16 @@ t_sequence	*sequence(t_stack	**stack)
 {
 	t_sequence	*seq;
 	t_stack		*current;
-	int			i;
 
 	seq = alloc_sequence(&seq);
 	if (!seq)
 		return (NULL);
 	current = *stack;
-	i = 0;
 	while (current->next != *stack)
 	{
-		create_seq(current, &seq, i, stack);
+		create_seq(current, &seq, stack);
 		current = current->next;
-		i++;
 	}
 	return (seq);
 }
+

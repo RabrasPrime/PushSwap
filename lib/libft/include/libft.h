@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 14:15:03 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/29 11:15:10 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 22:51:13 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*=-=-=-=-=-=-=-=-ERROR-=-=-=-=-=-=-=-=*/
-void	ft_error()
+
+void	ft_error();
 
 #endif

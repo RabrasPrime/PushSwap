@@ -6,7 +6,7 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/01/28 15:54:02 by tjooris          ###   ########.fr        #
+#    Updated: 2025/02/02 23:38:57 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,10 +129,10 @@ INTO_SRC	=	ft_tolower.c \
 
 #=-=-=-=-=-=-ERROR-=-=-=-=-=#
 
-SRC	+=	$(addprefix $(STRINT_DIR), $(STRINT_SRC))
+SRC	+=	$(addprefix $(ERROR_DIR), $(ERROR_SRC))
 
-STRINT_DIR	=	error/
-STRINT_SRC	=	ft_error.c \
+ERROR_DIR	=	error/
+ERROR_SRC	=	ft_error.c \
 
 #=-=-=-=-=-=-INCLUDES-=-=-=-=-=#
 

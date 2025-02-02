@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:39:32 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 15:51:29 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 22:27:33 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ typedef	struct s_stack
 	int value;
 	struct s_stack	*next;
 	struct s_stack	*prev;
-	int			value;
 	int			sa;
 	int			sb;
 	int			ra;

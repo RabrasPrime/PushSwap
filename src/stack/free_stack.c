@@ -6,11 +6,12 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 13:24:30 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/31 12:53:08 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 23:10:08 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
+#include <stdlib.h>  
 
 void	ft_freestack(t_stack	**stack, int size)
 {
@@ -19,7 +20,7 @@ void	ft_freestack(t_stack	**stack, int size)
 
 	i = 0;
 	current = *stack;
-	while ( i < size - 1 )
+	while (i < size - 1)
 	{
 		current = current->next;
 		free(current->prev);

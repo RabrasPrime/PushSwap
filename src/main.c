@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 14:45:36 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/31 11:47:27 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 22:51:53 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-void	initiate_move(t_stack **stack_a, int n)
+void	initiate_move(t_stack **stack_a, int	n)
 {
 	t_stack	*current;
 
@@ -37,7 +37,7 @@ void	initiate_move(t_stack **stack_a, int n)
 	current->rrb = n;
 }
 
-static	is_orderer(t_stack	*stack_a)
+static	void is_orderer(t_stack	*stack_a)
 {
 	t_stack	*current;
 
@@ -46,7 +46,7 @@ static	is_orderer(t_stack	*stack_a)
 	{
 		if (current->number > current->next->number)
 			return ;
-			current = current->next;
+		current = current->next;
 	}
 	exit(EXIT_SUCCESS);
 }

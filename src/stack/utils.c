@@ -6,7 +6,7 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:53:11 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/31 13:29:53 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 23:09:27 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 static void	add_stack(t_stack *stack, t_stack *add)
 {
 	t_stack	*top;
-	
+
 	top = stack;
 	while (top->next != stack)
 	{
@@ -33,14 +33,13 @@ static void	add_stack(t_stack *stack, t_stack *add)
 		stack->prev = add;
 		add->next = stack;
 		add->prev = stack;
-			return ;
+		return ;
 	}
 	top = stack;
 	add->prev = top->prev;
 	top->prev->next = add;
 	top->prev = add;
 	add->next = top;
-	
 }
 
 int	stacklen(t_stack	*stack)
@@ -62,7 +61,6 @@ int	stacklen(t_stack	*stack)
 		i++;
 	}
 	return (i);
-	
 }
 
 int	*stackdup(int	*tab, t_stack	*stack)
@@ -106,8 +104,10 @@ t_stack	*stack_init(t_stack	*stack, char **array)
 	stack->prev = stack;
 	i = 1;
 	while (array[i])
+	{
 		add_stack(stack, create_stack(ft_atoi(array[i++])));
-		if (!stack)
-			ft_error();
+	}
+	if (!stack)
+		ft_error();
 	return (stack);
 }

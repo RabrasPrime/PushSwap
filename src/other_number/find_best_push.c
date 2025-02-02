@@ -6,13 +6,13 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:29:24 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 13:09:10 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 23:04:21 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 
-static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
+static void	push_best(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current;
 	t_stack	*save;
@@ -20,7 +20,7 @@ static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
 
 	max = 2147483647;
 	current = *stack_b;
-	while (current->next != stack_b)
+	while (current->next != *stack_b)
 	{
 		if (current->sa + current->sb + current->ra 
 			+ current->rb + current->rra + current->rrb < max)
@@ -28,6 +28,7 @@ static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
 			max = current->sa + current->sb + current->ra  + current->rb + current->rra + current->rrb;
 			save = current;
 		}
+		current = current->next;
 	}
 	if (current->sa + current->sb + current->ra 
 		+ current->rb + current->rra + current->rrb < max)
@@ -38,7 +39,7 @@ static void	push_best(t_stack	**stack_a, t_stack	**stack_b)
 	move(stack_a, stack_b, &save);
 }
 
-void	find_push(t_stack	**stack_a, t_stack	**stack_b)
+void	find_push(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*current_b;
 	int		i;
@@ -52,7 +53,7 @@ void	find_push(t_stack	**stack_a, t_stack	**stack_b)
 		if (i <= size / 2)
 			current_b->rb = i;
 		else
-			current_b->rrb = size -1;
+			current_b->rrb = size - i;
 		prepare_stack(stack_a, &current_b);
 		i++;
 		current_b = current_b->next;

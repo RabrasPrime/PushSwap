@@ -6,18 +6,19 @@
 /*   By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 11:24:06 by tjooris           #+#    #+#             */
-/*   Updated: 2025/01/30 16:53:03 by tjooris          ###   ########.fr       */
+/*   Updated: 2025/02/02 23:02:48 by tjooris          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pushswap.h"
 #include <unistd.h>
+#include <stdlib.h>
 
-static void	first_index(t_stack	**stack, t_stack *current, t_max *max, int i)
+static void	first_index(t_stack **stack, t_stack *current, t_max *max, int i)
 {
 	if (current->index == 0)
 	{
-		if (max->position <= max->stack_size /2)
+		if (max->position <= max->stack_size / 2)
 		{
 			while (i++ < max->position)
 				r(stack, 1, 'a');
@@ -29,6 +30,7 @@ static void	first_index(t_stack	**stack, t_stack *current, t_max *max, int i)
 		}
 	}
 }
+
 static void	reorg(t_stack **stack, int stack_size, int index)
 {
 	t_stack	*current;
@@ -38,17 +40,17 @@ static void	reorg(t_stack **stack, int stack_size, int index)
 	current = *stack;
 	i = 0;
 	j = 0;
-	while ( current->next != *stack )
+	while (current->next != *stack)
 	{
-		if (current-index == index)
+		if (current->index == index)
 		{
 			if (i <= stack_size / 2)
-				while ( j++ < i )
+				while (j++ < i)
 					r(stack, 1, 'a');
 			else
 				while (j++ < stack_size - i)
 					revr(stack, 1, 'a');
-			return ;
+			return;
 		}
 		i++;
 		current = current->next;
@@ -56,7 +58,7 @@ static void	reorg(t_stack **stack, int stack_size, int index)
 	first_index(stack, current, &(t_max){i, stack_size}, j);
 }
 
-static void	need_sa(t_stack	**stack, t_sequence **seq)
+static void	need_sa(t_stack **stack, t_sequence **seq)
 {
 	t_sequence	*fake_sequence;
 
@@ -75,7 +77,8 @@ static void	need_sa(t_stack	**stack, t_sequence **seq)
 		s(stack, 0, 'a');
 	}
 }
-void	sort_number(t_stack	**stack_a, t_stack	**stack_b)
+
+void	sort_number(t_stack **stack_a, t_stack **stack_b)
 {
 	t_sequence	*seq;
 	int			i;
@@ -99,5 +102,5 @@ void	sort_number(t_stack	**stack_a, t_stack	**stack_b)
 		initiate_move(stack_b, 0);
 		find_push(stack_a, stack_b);
 	}
-	reorg(*stack_a, stack_size, 0);
+	reorg(stack_a, stack_size, 0);
 }
