@@ -6,7 +6,7 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/02/03 12:00:05 by tjooris          ###   ########.fr        #
+#    Updated: 2025/02/03 13:41:30 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,15 +169,19 @@ $(LIB_PATH): force
 	@$(MAKE) -C $(@D)
 
 
+.PHONY: clean
 clean:
-	-@for lib in $(LIB_PATH); do $(MAKE) -s -C $$lib $@; done
+	-for lib in $(dir $(LIB_PATH)); do $(MAKE) -s -C $$lib $@; done
 	rm -rf $(MAKE_DIR)
 
-fclean: clean
-	rm -f $(NAME) $(MODES_TRACE)
+.PHONY: fclean
+fclean:
+	-for lib in $(dir $(LIB_PATH)); do $(MAKE) -s -C $$lib $@; done
+	rm -rf $(MAKE_DIR) $(NAME)
 
-
-re: fclean all
+.PHONY: re
+re: fclean
+	$(MAKE)
 
 help:
 	@echo "Usage: make [target]"
