@@ -6,26 +6,27 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/02/02 23:51:29 by tjooris          ###   ########.fr        #
+#    Updated: 2025/02/03 08:51:49 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-#=-=-=-=-=-=-FILES-=-=-=-=-=-=#
+# ================FILES================ #
 
-MAKE_DIR    :=  .make/
-BUILD_DIR   :=  $(MAKE_DIR)build_$(or $(shell git branch --show-current),default)/
-BASE_DIR    :=  normal/
+MAKE_DIR		:=	.make/
+BUILD_DIR		:=	$(MAKE_DIR)build_$(shell git branch --show-current)/
+BASE_BUILD_DIR	:= normal/
 
-SRC_DIR     =   src/
+SRC_DIR			=	src/
 
-OBJS        =   $(patsubst %.c, $(BUILD_DIR)%.o, $(SRC))
-DEPS        =   $(patsubst %.c, $(BUILD_DIR)%.d, $(SRC))
+OBJS			=	$(patsubst %.c, $(BUILD_DIR)%.o, $(SRC))
+
+DEPS			=	$(patsubst %.c, $(BUILD_DIR)%.d, $(SRC))
 
 #=-=-=-=-=-=-ROOT-=-=-=-=-=#
 
-SRC =   main.c
+SRC =   main.c \
 
 #=-=-=-=-=-=-3-=-=-=-=-=#
 
@@ -92,100 +93,101 @@ SRC +=  $(addprefix $(INDEXING_DIR), $(INDEXING_SRC))
 INDEXING_DIR    =   indexing/
 INDEXING_SRC    =   index_utils.c
 
-#=-=-=-=-=-=-INCLUDES-=-=-=-=-=#
+# ==========LIBS / INCLUDES============ #
 
-LIB_DIR     =   lib/
-LIB_PATH    =   libft/libft.a
+LIBS_DIR	=	lib/
+LIBS_PATH	=	libft/libft.a
+LIBS_PATH	:=	$(addprefix $(LIBS_DIR), $(LIBS_PATH))
+LIBS		=	$(patsubst lib%.a, %, $(notdir $(LIBS_PATH)))
 
-LIB_PATH    :=  $(addprefix $(LIB_DIR),$(LIB_PATH))
-LIB         =   $(patsubst lib%.a, %, $(notdir $(LIB_PATH)))
+INCS_DIR	=	includes/
+INCLUDES	=	$(INCS_DIR) \
+				$(dir $(LIBS_PATH))$(INCS_DIR)
 
-INC_DIR     =   include/
-INCLUDES    =   $(INC_DIR) \
-                $(dir $(LIB_PATH))$(INC_DIR)
+# ===============CONFIGS=============== #
 
-#=-=-=-=-=-=-COMPIL-=-=-=-=-=#
+CC			=	cc
+CFLAGS		+=	-Wall -Wextra -Werror
+CPPFLAGS	+=	$(addprefix -I, $(INCLUDES)) \
+			-MMD -MP
 
-CC          =   cc
+LDFLAGS		+=	$(addprefix -L, $(dir $(LIBS_PATH)))
+LDLIBS		+=	$(addprefix -l, $(LIBS))
 
-FLAGS       +=  -Wall -Wextra -Werror
-PPFLAGS     +=  $(addprefix -I, $(INCLUDES)) -MMD -MP
+AR			=	ar
+ARFLAGS		=	-rcs
 
-LDFLAGS     +=  $(addprefix -L, $(dir $(LIB_PATH)))
-LDLIB       +=  $(addprefix -l, $(LIB))
+MAKEFLAGS	+=	--no-print-directory
 
-AR          =   ar
-ARFLAGS     =   -rcs
+# ================MODES================ #
 
-MAKEFLAG    +=  --no-print-directory
+MODES		:= debug fsanitize optimize full-optimize
 
-#=-=-=-=-=-=-MODES-=-=-=-=-=#
+MODE_TRACE	:= $(BUILD_DIR).mode_trace
+LAST_MODE	:= $(shell cat $(MODE_TRACE) 2>/dev/null)
 
-MODES       :=  debug fsanitize optimize full-optimize
-
-MODES_TRACE :=  $(BUILD_DIR).modes_trace
-LAST_MOD    :=  $(shell cat $(MODES_TRACE) 2>/dev/null)
-
-MODE    ?=
+MODE ?=
 
 ifneq ($(MODE), )
-    BUILD_DIR := $(BUILD_DIR)$(MODE)/
+	BUILD_DIR := $(BUILD_DIR)$(MODE)/
 else
-    BUILD_DIR := $(BUILD_DIR)$(BASE_BUILD_DIR)
+	BUILD_DIR := $(BUILD_DIR)$(BASE_BUILD_DIR)
 endif
 
 ifeq ($(MODE), debug)
-    FLAGS = -g3
+	CFLAGS = -g3
 else ifeq ($(MODE), fsanitize)
-    FLAGS = -g3 -fsanitize=address
+	CFLAGS = -g3 -fsanitize=address
 else ifeq ($(MODE), optimize)
-    FLAGS += -O2
+	CFLAGS += -O2
 else ifeq ($(MODE), full-optimize)
-    FLAGS += -O3
+	CFLAGS += -O3
 else ifneq ($(MODE),)
-    ERROR = MODE
+	ERROR = MODE
 endif
 
-ifneq ($(LAST_MOD), $(MODE))
+ifneq ($(LAST_MODE), $(MODE))
 $(NAME): force
 endif
 
-#=-=-=-=-=-=-CAST-=-=-=-=-=#
+# ================TARGETS============== #
 
-.PHONY: all clean fclean $(MODE) re help
-
+.PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIB_PATH)
-	@echo $(MODE) > $(MODES_TRACE)
-	$(CC) $(FLAGS) $(OBJS) $(LDFLAGS) $(LDLIB) -o $(NAME)
+show:
+	@echo $(SRC_TEST)
 
-$(BUILD_DIR)%.o: $(SRC_DIR)%.c $(LIB_PATH)
+$(NAME): $(LIBS_PATH) $(OBJS)
+	@echo $(MODE) > $(MODE_TRACE)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+
+$(BUILD_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	$(CC) $(PPFLAGS) $(FLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
+$(LIBS_PATH): force
+	@$(MAKE) -C $(@D)
 
-$(LIB_PATH):
-	$(MAKE) -C lib/libft
+.PHONY: $(MODES)
+$(MODES):
+	@$(MAKE) MODE=$@
 
-
+.PHONY: clean
 clean:
-	-@for lib in $(LIB_PATH); do $(MAKE) -s -C $$lib $@; done
+	-for lib in $(dir $(LIBS_PATH)); do $(MAKE) -s -C $$lib $@; done
 	rm -rf $(MAKE_DIR)
 
-fclean: clean
-	rm -f $(NAME) $(MODES_TRACE)
+.PHONY: fclean
+fclean:
+	-for lib in $(dir $(LIBS_PATH)); do $(MAKE) -s -C $$lib $@; done
+	rm -rf $(MAKE_DIR) $(NAME)
 
+.PHONY: re
+re: fclean
+	@$(MAKE)
 
-re: fclean all
-
-help:
-	@echo "Usage: make [target]"
-	@echo "Targets:"
-	@echo "  all       Build the project"
-	@echo "  clean     Remove object files and dependencies"
-	@echo "  fclean    Remove all build files, binary, and mode trace"
-	@echo "  re        Clean and rebuild"
+# ================MISC================= #
 
 .PHONY: print-%
 print-%:
@@ -198,3 +200,4 @@ force:
 -include $(DEPS)
 
 .DEFAULT_GOAL := all
+

@@ -6,29 +6,27 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/02/02 23:38:57 by tjooris          ###   ########.fr        #
+#    Updated: 2025/02/03 08:54:09 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
+# ================FILES================ #
 
-#=-=-=-=-=-=-FILES-=-=-=-=-=-=#
+MAKE_DIR		:=	.make/
+BUILD_DIR		:=	$(MAKE_DIR)build_$(shell git branch --show-current)/
+BASE_BUILD_DIR	:= normal/
 
-MAKE_DIR	:=	.make/
-BUILD_DIR	:=	$(MAKE_DIR)build_$(or $(shell git branch --show-current),default)/
-BASE_DIR	:=	normal/
+SRC_DIR			=	src/
 
-SRC_DIR		=	src/
+OBJS			=	$(patsubst %.c, $(BUILD_DIR)%.o, $(SRC))
 
-OBJS			=	$(patsubst	%.c, $(BUILD_DIR)%.o, $(SRC))
+DEPS			=	$(patsubst %.c, $(BUILD_DIR)%.d, $(SRC))
 
-DEPS			=	$(patsubst	%.c, $(BUILD_DIR)%.d, $(SRC))
+# ================ROOT================= #
 
-
-#=-=-=-=-=-=-ROOT-=-=-=-=-=#
-
-SRC	=
+SRC 		=
 
 #=-=-=-=-=-=-IS-=-=-=-=-=#
 
@@ -118,6 +116,7 @@ STRINT_SRC	=	ft_atoi.c \
 				ft_substr.c \
 				ft_swap.c \
 				ft_freestr.c \
+				ft_tablen.c \
 
 #=-=-=-=-=-=-TO-=-=-=-=-=#
 
@@ -134,40 +133,40 @@ SRC	+=	$(addprefix $(ERROR_DIR), $(ERROR_SRC))
 ERROR_DIR	=	error/
 ERROR_SRC	=	ft_error.c \
 
-#=-=-=-=-=-=-INCLUDES-=-=-=-=-=#
+# ==========LIBS / INCLUDES============ #
 
-LIB_DIR		=
-LIB_PATH	=
-LIB_PATH	:=	$(addprefix $(LIB_DIR),$(LIB_PATH))
-LIB			=	$(patsubst lib%.a, %, $(notdir $(LIB_PATH)))
+LIBS_DIR	=
+LIBS_PATH	=
+LIBS_PATH	:=	$(addprefix $(LIBS_DIR), $(LIBS_PATH))
+LIBS		=	$(patsubst lib%.a, %, $(notdir $(LIBS_PATH)))
 
-INC_DIR		=	include/
-INCLUDES	=	$(INC_DIR) \
-				$(dir $(LIB_PATH))$(INC_DIR)
-			
-#=-=-=-=-=-=-COMPIL-=-=-=-=-=#
+INCS_DIR	=	includes/
+INCLUDES	=	$(INCS_DIR) \
+				$(dir $(LIBS_PATH))$(INCS_DIR)
+
+# ===============CONFIGS=============== #
 
 CC			=	cc
+CFLAGS		+=	-Wall -Wextra -Werror
+CPPFLAGS	+=	$(addprefix -I, $(INCLUDES)) \
+				-MMD -MP
 
-FLAGS		+=	-Wall -Wextra -Werror
-PPFLAGS		+=	$(addprefix -I, $(INCLUDES)) -MMD -MP
-
-LDFLAGS		+=	$(addprefix -L, $(dir $(LIB_PATH)))
-LDLIB		+=	$(addprefix -l, $(LIB))
+LDFLAGS		+=	$(addprefix -L, $(dir $(LIBS_PATH)))
+LDLIBS		+=	$(addprefix -l, $(LIBS))
 
 AR			=	ar
-ARFLAF		=	-rcs
+ARFLAGS		=	-rcs
 
-MAKEFLAG	+=	--no-print-directory
+MAKEFLAGS	+=	--no-print-directory
 
-#=-=-=-=-=-=-MODES-=-=-=-=-=#
+# ================MODES================ #
 
-MODES		:=	debug fsanitize optimize full-optimize
+MODES		:= debug fsanitize optimize full-optimize
 
-MODES_TRACE	:=	$(BUILD_DIR).modes_trace
-LAST_MOD	:= $(shell cat $(MODES_TRACE) 2>/dev/null)
+MODE_TRACE	:= $(BUILD_DIR).mode_trace
+LAST_MODE	:= $(shell cat $(MODE_TRACE) 2>/dev/null)
 
-MODE	?=
+MODE ?=
 
 ifneq ($(MODE), )
 	BUILD_DIR := $(BUILD_DIR)$(MODE)/
@@ -176,51 +175,61 @@ else
 endif
 
 ifeq ($(MODE), debug)
-	FLAGS = -g3
+	CFLAGS = -g3
 else ifeq ($(MODE), fsanitize)
-	FLAGS = -g3 -fsanitize=address
+	CFLAGS = -g3 -fsanitize=address
 else ifeq ($(MODE), optimize)
-	FLAGS += -O2
+	CFLAGS += -O2
 else ifeq ($(MODE), full-optimize)
-	FLAGS += -O3
+	CFLAGS += -O3
 else ifneq ($(MODE),)
 	ERROR = MODE
 endif
 
-ifneq ($(LAST_MOD), $(MODE))
+ifneq ($(LAST_MODE), $(MODE))
 $(NAME): force
 endif
 
-#=-=-=-=-=-=-CAST-=-=-=-=-=#
+# ================TARGETS============== #
 
-.PHONY: all clean fclean $(MODE) re help
-
+.PHONY: all
 all: $(NAME)
 
+show:
+	@echo $(SRC_TEST)
+
 $(NAME): $(OBJS)
-	@echo $(MODE) > $(MODES_TRACE)
-	$(AR) $(ARFLAF) $(NAME) $(OBJS)
+	@echo $(MODE) > $(MODE_TRACE)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
-	$(CC) $(PPFLAGS) $(FLAGS) -c $< -o $@
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-clean fclean:
-	-@for lib in $(LIBS_PATH); do $(MAKE) -s -C $$lib $@; done
+$(LIBS_PATH): force
+	$(MAKE) -C $(@D)
+
+.PHONY: $(MODES)
+$(MODES):
+	$(MAKE) MODE=$@
+
+.PHONY: clean
+clean:
+	-for lib in $(dir $(LIBS_PATH)); do $(MAKE) -s -C $$lib $@; done
 	rm -rf $(MAKE_DIR)
-	@if [ "$@" = "fclean" ]; then rm -f $(NAME) $(MODE_TRACE); fi
 
-re: fclean all
+.PHONY: fclean
+fclean:
+	-for lib in $(dir $(LIBS_PATH)); do $(MAKE) -s -C $$lib $@; done
+	rm -rf $(MAKE_DIR) $(NAME)
 
-help:
-	@echo "Usage: make [target]"
-	@echo "Targets:"
-	@echo "  all       Build the project"
-	@echo "  clean     Remove object files and dependencies"
-	@echo "  fclean    Remove all build files, binary, and mode trace"
-	@echo "  re        Clean and rebuild"
+.PHONY: re
+re: fclean
+	$(MAKE)
 
-	.PHONY: print-%
+# ================MISC================= #
+
+.PHONY: print-%
 print-%:
 	@echo $(patsubst print-%,%,$@)=
 	@echo $($(patsubst print-%,%,$@))
