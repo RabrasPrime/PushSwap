@@ -6,7 +6,7 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/02/02 23:51:29 by tjooris          ###   ########.fr        #
+#    Updated: 2025/02/03 12:00:05 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -165,8 +165,8 @@ $(BUILD_DIR)%.o: $(SRC_DIR)%.c $(LIB_PATH)
 	$(CC) $(PPFLAGS) $(FLAGS) -c $< -o $@
 
 
-$(LIB_PATH):
-	$(MAKE) -C lib/libft
+$(LIB_PATH): force
+	@$(MAKE) -C $(@D)
 
 
 clean:

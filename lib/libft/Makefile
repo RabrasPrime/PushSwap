@@ -6,7 +6,7 @@
 #    By: tjooris <tjooris@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/20 14:10:16 by tjooris           #+#    #+#              #
-#    Updated: 2025/02/02 23:38:57 by tjooris          ###   ########.fr        #
+#    Updated: 2025/02/03 12:00:53 by tjooris          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,6 +118,7 @@ STRINT_SRC	=	ft_atoi.c \
 				ft_substr.c \
 				ft_swap.c \
 				ft_freestr.c \
+				ft_tablen.c \
 
 #=-=-=-=-=-=-TO-=-=-=-=-=#
 
